@@ -1,0 +1,12 @@
+{
+  "name": "sgabriel/328/food",
+  "authors": [
+    {
+      "name": "Samantha Gabriel",
+      "email": "sgabriel@mail.greenriver.edu"
+    }
+  ],
+  "require": {
+    "bcosca/fatfree-core": "dev-master"
+  }
+}
