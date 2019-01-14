@@ -33,6 +33,13 @@ $f3->route('GET /lunch', function(){
     echo $view->render('views/lunch.html');
 });
 
+// Define a pancakes route
+$f3->route('GET /breakfast/pancakes', function(){
+    //echo '<h1>My Favorite Food</h1>';
+    $view = new View();
+    echo $view->render('views/pancakes.html');
+});
+
 //run fat free
 $f3->run();
 
