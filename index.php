@@ -40,6 +40,34 @@ $f3->route('GET /breakfast/pancakes', function(){
     echo $view->render('views/pancakes.html');
 });
 
+// Define a dinner route
+$f3->route('GET /dinner', function(){
+    //echo '<h1>My Favorite Food</h1>';
+    $view = new View();
+    echo $view->render('views/dinner.html');
+});
+
+// Define a fettuccine alfredo route
+$f3->route('GET /dinner/fettuccinealfredo', function(){
+    //echo '<h1>My Favorite Food</h1>';
+    $view = new View();
+    echo $view->render('views/fettuccinealfredo.html');
+});
+
+// Define a chicken adobo route
+$f3->route('GET /dinner/chickenadobo', function(){
+    //echo '<h1>My Favorite Food</h1>';
+    $view = new View();
+    echo $view->render('views/chickenadobo.html');
+});
+
+// Define a chicken enchiladas route
+$f3->route('GET /dinner/chickenenchiladas', function(){
+    //echo '<h1>My Favorite Food</h1>';
+    $view = new View();
+    echo $view->render('views/chickenenchiladas.html');
+});
+
 //run fat free
 $f3->run();
 
