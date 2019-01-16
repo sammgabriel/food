@@ -69,7 +69,7 @@ $f3->route('GET /dinner/chickenenchiladas', function(){
 });
 
 
-//define a route parameter
+//define a route with a parameter
 	$f3->route('GET /@food', function ($f3, $params)
 	{
 		print_r($params);
@@ -77,11 +77,66 @@ $f3->route('GET /dinner/chickenenchiladas', function(){
 	});
 
 
-	//define a route with multiple parameter
+	//define a route with multiple parameters
 	$f3->route('GET /@meal/@food', function ($f3, $params)
 	{
 		print_r($params);
-		echo "<h3>I like " .$params['food']." for ".$params['meal']."</h3>";
+
+		$validMeals = ['breakfast', 'lunch', 'dinner'];
+		$meal = $params['meal'];
+
+		//check validity
+		if(!in_array($params['meal'] , $validMeals))
+		{
+			echo "<h3>Sorry, we don't serve $meal</h3>";
+		}
+		else
+		{
+			switch ($meal)
+			{
+				case 'breakfast':
+					$time = " in the morning";
+					break;
+				case 'lunch':
+					$time = " at noon";
+					break;
+				case 'dinner':
+					$time = " in the evening";
+					break;
+			}
+			echo "<h3>I like " .$params['food']."$time</h3>";
+		}
+	});
+
+
+	//define route to display orderform
+	$f3->route('GET /order', function ()
+	{
+		$view = new View();
+		echo $view->render('views/form1.html');
+	});
+
+	//define route to process orderform
+	$f3->route('POST /order-process', function ($f3)
+	{
+		print_r($_POST);
+
+		$food = $_POST['food'];
+		echo "You ordered $food";
+
+		if ($food == 'fettuccine alfredo')
+		{
+			//reroute to pizza page
+			$f3->reroute("/dinner/fettuccinealfredo");
+		}
+		else
+		{
+			//reroute to home page
+			$f3->reroute("");
+
+			//display a 404 error
+			$f3->error(404);
+		}
 	});
 
 //run fat free
