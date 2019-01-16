@@ -109,6 +109,27 @@ $f3->route('GET /dinner/chickenenchiladas', function(){
 	});
 
 
+
+	$f3->route('GET /dessert/@food', function ($f3, $params)
+	{
+		$food = $params['food'];
+		if ($food == 'pie')
+		{
+			//reroute to pizza page
+			$f3->reroute("/views/pie.html");
+		}
+		elseif ($food == 'cake' or $food == 'cookies' or $food == 'brownies')
+		{
+			echo "<h3>I like " .$food." for dessert.</h3>";
+		}
+		else
+		{
+			//display a 404 error
+			$f3->error(404);
+		}
+	});
+
+
 	//define route to display orderform
 	$f3->route('GET /order', function ()
 	{
